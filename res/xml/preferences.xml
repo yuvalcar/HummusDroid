@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <PreferenceCategory 
+        android:title="@string/menu_settings"
+        android:key="settings">
+        <CheckBoxPreference
+            android:key="yuvalc_boolean_pref"
+            android:title="yuvalc_boolean_pref"
+            android:defaultValue="false" />
+        <Preference 
+            android:key="yuvalc_normal_pref"
+            android:summary="yuvalc_normal_pref"
+            android:title="yuvalc_normal_pref"/>
+        
+    </PreferenceCategory>
+</PreferenceScreen>
