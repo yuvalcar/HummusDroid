@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
 		if (!isInternetPresent) {
 			// Internet Connection is not present
 			alert.showAlertDialog(MainActivity.this, "Internet Connection Error",
-					"Please connect to working Internet connection", false);
+					"אין לך רשת, לך חפש אחת", false);
 			// stop executing code by return
 			return;
 		}
@@ -276,13 +276,13 @@ public class MainActivity extends Activity {
 					else if(status.equals("OVER_QUERY_LIMIT"))
 					{
 						alert.showAlertDialog(MainActivity.this, "Places Error",
-								"Sorry, too many hummus places around you...",
+								"הצפת חומוסיות, יותר מדי חומוסיות באיזורך",
 								false);
 					}
 					else if(status.equals("REQUEST_DENIED"))
 					{
 						alert.showAlertDialog(MainActivity.this, "Places Error",
-								"Sorry error occured. Request is denied",
+								"אין לך הרשאות, לך חפש חומוס לבד",
 								false);
 					}
 					else if(status.equals("INVALID_REQUEST"))
