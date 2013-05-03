@@ -2,14 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical">
+    android:gravity="center_vertical"
+    android:background="@drawable/splash"
+    android:orientation="vertical" >
 
-    <ImageButton
-        android:id="@+id/hummusButton"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_alignParentLeft="true"
-        android:onClick="findSomeHummus"
-        android:src="@drawable/hummus" android:contentDescription="@string/bigHummus"/>
- 
+
+
 </RelativeLayout>

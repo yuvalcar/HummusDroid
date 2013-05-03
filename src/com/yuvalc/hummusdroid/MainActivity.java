@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import com.google.android.maps.MyLocationOverlay;
 import com.yuvalc.hummusdroid.HummusPlace;
 import com.yuvalc.hummusdroid.NavigationManager.NAVIGATION_TYPE;
 import com.yuvalc.hummusdroid.R;
@@ -65,7 +66,7 @@ public class MainActivity extends Activity {
 	
 	
 	// KEY Strings
-	public static String KEY_REFERENCE = "reference"; // id of the place
+	public static String KEY_REFERENCE = "id"; // id of the place
 	public static String KEY_NAME = "name"; // name of the place
 	public static String KEY_VICINITY = "vicinity"; // Place area name
 	public static String KEY_RATING = "rating"; // Place area name
@@ -74,17 +75,20 @@ public class MainActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		setTheme(10);
 		setContentView(R.layout.activity_main);
+		findSomeHummus();
 	}
 	
 	public void onResume()
 	{
 		super.onResume();
 		setContentView(R.layout.activity_main);
+		findSomeHummus();
 	}
 		
 		
-	public void findSomeHummus(View v)
+	public void findSomeHummus()
 	{
 		cd = new ConnectionDetector(getApplicationContext());
 
@@ -108,11 +112,6 @@ public class MainActivity extends Activity {
 			gps.showSettingsAlert();
 			return;
 		}
-	
-		setContentView(R.layout.list_view);
-		
-		// Getting listview
-		lv = (ListView) findViewById(R.id.list);
 
 		navigation = new NavigationManager(this);
 
@@ -127,20 +126,7 @@ public class MainActivity extends Activity {
 	class LoadPlaces extends AsyncTask<String, String, String> {
 
 		/**
-		 * Before starting background thread Show Progress Dialog
-		 * */
-		@Override
-		protected void onPreExecute() {
-			super.onPreExecute();
-			pDialog = new ProgressDialog(MainActivity.this);
-			pDialog.setMessage("החומוס מגיע");
-			pDialog.setIndeterminate(false);
-			pDialog.setCancelable(true);
-			pDialog.show();
-		}
-
-		/**
-		 * getting Places JSON
+		 * retrieving Places JSON
 		 * */
 		protected String doInBackground(String... args) {
 			// creating Places class object
@@ -165,8 +151,13 @@ public class MainActivity extends Activity {
 		}
 
 		protected void onPostExecute(String file_url) {
-			// dismiss the dialog after getting all products
-			pDialog.dismiss();
+			//Change the content view to list_view 
+			//after finding all hummus places
+			setContentView(R.layout.list_view);
+			
+			// Getting listview
+			lv = (ListView) findViewById(R.id.list);
+
 			// updating UI from Background Thread
 			runOnUiThread(new Runnable() {
 				public void run() {
@@ -185,7 +176,7 @@ public class MainActivity extends Activity {
 								
 								// Place reference won't display in listview - it will be hidden
 								// Place reference is used to get "place full details"
-								map.put(KEY_REFERENCE, p.reference);
+								map.put(KEY_REFERENCE, p.id);
 								
 								// Place name
 								map.put(KEY_NAME, p.name);
@@ -210,8 +201,8 @@ public class MainActivity extends Activity {
 							// list adapter
 							ListAdapter adapter = new SimpleAdapter(MainActivity.this, placesListItems,
 					                R.layout.list_item,
-					                new String[] { KEY_REFERENCE,KEY_VICINITY, KEY_NAME, KEY_DISTANCE}, new int[] {
-					                        R.id.reference, R.id.vicinity, R.id.name, R.id.distance});
+					                new String[] { KEY_REFERENCE,KEY_VICINITY, KEY_NAME, KEY_DISTANCE, KEY_REFERENCE}, new int[] {
+					                        R.id.reference, R.id.vicinity, R.id.name, R.id.distance, R.id.reference});
 							
 							// Adding data into listview
 							lv.setAdapter(adapter);
@@ -221,12 +212,12 @@ public class MainActivity extends Activity {
 								@Override
 								public void onItemClick(AdapterView<?> parent, View view,
 										int position, long id) {
-									String name = ((TextView) view.findViewById(R.id.name)).getText().toString();
+									String reference = ((TextView) view.findViewById(R.id.reference)).getText().toString();
 									HummusPlace chosenPlace = null;
 									
 									for (HummusPlace hp : nearPlaces.results)
 									{
-										if (name == hp.name)
+										if (reference.equals(hp.id))
 										{
 											chosenPlace = hp;
 											break;

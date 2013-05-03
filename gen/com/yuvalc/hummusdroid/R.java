@@ -20,20 +20,20 @@ public final class R {
     }
     public static final class drawable {
         public static final int fail=0x7f020000;
-        public static final int hummus=0x7f020001;
-        public static final int ic_action_search=0x7f020002;
-        public static final int ic_launcher=0x7f020003;
-        public static final int success=0x7f020004;
+        public static final int ic_action_search=0x7f020001;
+        public static final int ic_launcher=0x7f020002;
+        public static final int list_splash=0x7f020003;
+        public static final int splash=0x7f020004;
+        public static final int success=0x7f020005;
     }
     public static final class id {
-        public static final int distance=0x7f0a0004;
-        public static final int hummusButton=0x7f0a0000;
-        public static final int list=0x7f0a0006;
-        public static final int menu_settings=0x7f0a0007;
-        public static final int name=0x7f0a0002;
-        public static final int nearbyHummus=0x7f0a0005;
-        public static final int reference=0x7f0a0001;
-        public static final int vicinity=0x7f0a0003;
+        public static final int distance=0x7f0a0003;
+        public static final int list=0x7f0a0005;
+        public static final int menu_settings=0x7f0a0006;
+        public static final int name=0x7f0a0001;
+        public static final int nearbyHummus=0x7f0a0004;
+        public static final int reference=0x7f0a0000;
+        public static final int vicinity=0x7f0a0002;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;

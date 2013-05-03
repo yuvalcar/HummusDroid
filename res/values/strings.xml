@@ -2,7 +2,7 @@
 
     <string name="app_name">חומוס</string>
     <string name="menu_settings">Settings</string>
-    <string name="pressHummus">לחץ על החומוס</string>
+    <string name="pressHummus">החומוס מגיע, אנא המתן</string>
     <string name="title_activity_main">חומוס</string>
     <string name="bigHummus">Big hummus image</string>
     <string name="nearbyHummus">חומוסיות באזורך</string>
